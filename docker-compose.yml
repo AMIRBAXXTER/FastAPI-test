@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  fastapi:
+    build:
+      context: ./code
+      dockerfile: Dockerfile
+    container_name: fastapi_app
+
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/code
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/chat_db
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - fastapi
+
+volumes:
+  mongo_data:
