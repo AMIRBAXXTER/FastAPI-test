@@ -1,6 +1,12 @@
-from pydantic import BaseModel, Field
-from typing import Optional
 from datetime import datetime
+from typing import Optional, List
+
+from pydantic import BaseModel
+
+
+class User(BaseModel):
+    id: str
+    username: str
 
 
 class Message(BaseModel):
@@ -12,3 +18,9 @@ class Message(BaseModel):
     file_url: Optional[str] = None
     file_type: Optional[str] = None
     timestamp: datetime
+
+
+class Group(BaseModel):
+    id: str
+    name: str
+    members: List[str]

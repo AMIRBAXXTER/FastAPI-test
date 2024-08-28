@@ -1,6 +1,6 @@
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException
-from code.models.message import Message
+from code.schemas.message import Message
 from code.crud.message import create_message, get_private_messages, get_group_messages
 from code.db.database import mongodb
 

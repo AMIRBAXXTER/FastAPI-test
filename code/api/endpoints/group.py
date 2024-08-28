@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
-from code.models.group import Group
+from code.schemas.group import Group
 from code.crud.group import create_group, get_group
 from code.db.database import mongodb
 
